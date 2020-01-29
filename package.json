@@ -1,19 +1,27 @@
 {
   "name": "now-deployments",
   "private": true,
-  "main": "index.js",
+  "main": "dist/index.js",
+  "engines": {
+    "node": "v12"
+  },
   "scripts": {
-    "start": "node ./dist/index.js",
-    "build": "tsc",
+    "build": "ncc build index.ts -o dist",
     "lint": "eslint .",
-    "lint:fix": "yarn lint --fix"
+    "lint:ts": "tsc",
+    "lint:fix": "npm run lint --fix",
+    "all": "npm run lint && npm run lint:ts && npm run build"
   },
   "dependencies": {
-    "actions-toolkit": "^2.1.0",
+    "@actions/core": "^1.2.2",
+    "@actions/exec": "^1.0.3",
+    "@actions/github": "^2.1.0",
     "axios": "^0.19.2",
-    "common-tags": "^1.8.0"
+    "common-tags": "^1.8.0",
+    "now": "^16.7.3"
   },
   "devDependencies": {
+    "@zeit/ncc": "^0.21.0",
     "@types/node": "^13.5.0",
     "@typescript-eslint/eslint-plugin": "^2.17.0",
     "eslint": "^6.8.0",

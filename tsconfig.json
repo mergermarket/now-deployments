@@ -8,6 +8,7 @@
     "lib": ["dom", "es2017"],
     "module": "CommonJS",
     "moduleResolution": "node",
+    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -18,5 +19,5 @@
     "outDir": "./dist"
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts"]
 }
