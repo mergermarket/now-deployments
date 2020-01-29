@@ -1,0 +1,27 @@
+name: 'now-deployments'
+description: 'Github Action to auto-comment on pull request where the actions took place'
+author: 'Acuris'
+inputs:
+  github-token:
+    description: 'Github token'
+    required: true
+  zeit-token:
+    description: 'Zeit token'
+    required: true
+  team-id:
+    description: 'Zeit team id'
+    required: false
+  now-args:
+    description: 'Now deploy args'
+    required: false
+    default: ''
+  working-directory:
+    description: 'Working directory to deploy from'
+    required: false
+    default: './'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: eye
+  color: purple
