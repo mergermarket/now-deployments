@@ -1,0 +1,10 @@
+name: 'now-deployments'
+description: 'Github Action to auto-comment on pull request where the actions took place'
+author: 'Acuris'
+inputs:
+  myInput:
+    description: 'input description here'
+    default: 'default value if applicable'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

@@ -3,13 +3,14 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "node ./dist/index.js",
     "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
-    "actions-toolkit": "^2.1.0",
+    "@actions/core": "^1.2.2",
+    "@actions/exec": "^1.0.3",
+    "@actions/github": "^2.1.0",
     "axios": "^0.19.2",
     "common-tags": "^1.8.0"
   },
