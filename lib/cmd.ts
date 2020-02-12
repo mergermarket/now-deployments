@@ -128,7 +128,7 @@ const comment = (cmdContext: CmdContext) => async () => {
 
   const deployments = await Promise.all(deploymentStrategies);
   const lastDeployment = deployments
-    .find((deployment) => deployment.url !== undefined) as Deployment;
+    .find((deployment) => deployment?.url !== undefined) as Deployment;
 
   const message = generateCommitMessage(lastDeployment);
 
