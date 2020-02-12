@@ -27665,10 +27665,10 @@ const zeitURL = 'https://api.zeit.co';
 const messageHeader = 'Preview ready!';
 const deploy = (context) => (options) => __awaiter(void 0, void 0, void 0, function* () {
     const { zeitToken, githubContext } = context;
-    const { nowArgs, execOptions, } = options;
+    const { nowArgs, execOptions } = options;
     return exec_1.exec('npx', [
         'now',
-        ...(nowArgs.split(/ +/)),
+        ...nowArgs.split(/ +/),
         '-t',
         zeitToken,
         '-m',
@@ -27678,7 +27678,7 @@ const deploy = (context) => (options) => __awaiter(void 0, void 0, void 0, funct
     ], execOptions);
 });
 const generateCommitMessage = (payload) => {
-    const { meta: { commit }, url } = payload;
+    const { meta: { commit }, url, } = payload;
     return common_tags_1.stripIndents `
     ${messageHeader}
     Commit: ${commit}
@@ -27693,11 +27693,11 @@ const getLastComment = (options) => __awaiter(void 0, void 0, void 0, function* 
     };
     if (githubContext.eventName === 'push') {
         const { data } = yield githubApi.repos.listCommentsForCommit(Object.assign(Object.assign({}, payload), { commit_sha: lastDeploymentCommit }));
-        return data.find((c) => c.body.startsWith(messageHeader));
+        return data.find(c => c.body.startsWith(messageHeader));
     }
     if (githubContext.eventName === 'pull_request') {
         const { data } = yield githubApi.issues.listComments(Object.assign(Object.assign({}, payload), { issue_number: githubContext.issue.number }));
-        return data.find((c) => c.body.startsWith(messageHeader));
+        return data.find(c => c.body.startsWith(messageHeader));
     }
     return null;
 });
@@ -27728,15 +27728,19 @@ const updateOrCreateComment = (options) => __awaiter(void 0, void 0, void 0, fun
 });
 const comment = (cmdContext) => () => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    const { githubContext, zeitApi, teamId, githubApi, } = cmdContext;
+    const { githubContext, zeitApi, teamId, githubApi } = cmdContext;
     const deploymentStrategies = [
         zeitApi.getDeployments(Object.assign({ 'meta-commit': githubContext.sha }, (teamId && { teamId }))),
         zeitApi.getDeployments(Object.assign({ 'meta-branch': githubContext.ref }, (teamId && { teamId }))),
         zeitApi.getDeployments(Object.assign({ limit: 1 }, (teamId && { teamId }))),
     ];
     const deployments = yield Promise.all(deploymentStrategies);
+<<<<<<< HEAD
     const lastDeployment = deployments
         .find((deployment) => { var _a; return ((_a = deployment) === null || _a === void 0 ? void 0 : _a.url) !== undefined; });
+=======
+    const lastDeployment = deployments.find(deployment => deployment.url !== undefined);
+>>>>>>> cleanup
     const message = generateCommitMessage(lastDeployment);
     const lastComment = yield getLastComment({
         githubContext,
@@ -27752,11 +27756,15 @@ const comment = (cmdContext) => () => __awaiter(void 0, void 0, void 0, function
     });
 });
 exports.default = (options) => {
-    const { githubToken, zeitToken, githubContext, teamId, } = options;
+    const { githubToken, zeitToken, githubContext, teamId } = options;
     const githubApi = new github_1.GitHub(githubToken);
     const zeitApi = zeit_1.default({ baseURL: zeitURL, token: zeitToken });
     const context = {
-        githubContext, githubApi, zeitApi, zeitToken, teamId,
+        githubContext,
+        githubApi,
+        zeitApi,
+        zeitToken,
+        teamId,
     };
     return {
         comment: comment(context),
