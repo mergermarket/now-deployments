@@ -26,6 +26,7 @@ const deploy = (context: CmdContext) => async (options: DeployOptions) => {
     [
       'now',
       ...nowArgs.split(/ +/),
+      '-c',
       '-t',
       zeitToken,
       '-m',
