@@ -17,7 +17,7 @@
     "@actions/core": "^1.2.5",
     "@actions/exec": "^1.0.4",
     "@actions/github": "^2.2.0",
-    "axios": "^0.19.2",
+    "axios": "^0.20.0",
     "common-tags": "^1.8.0",
     "now": "^17.0.3"
   },
