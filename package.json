@@ -24,7 +24,7 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/common-tags": "^1.8.0",
-    "@types/node": "^14.10.2",
+    "@types/node": "^14.10.3",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "eslint-config-airbnb-typescript": "^7.2.1",
     "eslint-plugin-import": "^2.22.0",
