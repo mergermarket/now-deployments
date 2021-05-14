@@ -16,7 +16,7 @@
   "dependencies": {
     "@actions/core": "^1.2.7",
     "@actions/exec": "^1.0.4",
-    "@actions/github": "^2.2.0",
+    "@actions/github": "^4.0.0",
     "axios": "^0.19.2",
     "common-tags": "^1.8.0",
     "now": "^17.0.3"
